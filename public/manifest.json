@@ -1,0 +1,21 @@
+{
+    "name": "Shams Pharmacy | صيدلية شمس",
+    "short_name": "Shams",
+    "description": "Your trusted partner for health and beauty in Saudi Arabia.",
+    "start_url": "/?lang=ar",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0d9488",
+    "icons": [
+        {
+            "src": "/next.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "/next.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
