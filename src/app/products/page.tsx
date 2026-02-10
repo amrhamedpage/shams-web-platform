@@ -1,16 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { supabase } from '@/lib/supabase';
 import { ProductCard, Product } from '@/components/ProductCard';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { AlertCircle, Loader2 } from 'lucide-react';
-
 import { ProductCardSkeleton } from '@/components/Skeleton';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function ProductCatalogPage() {
+function ProductCatalogContent() {
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +23,6 @@ export default function ProductCatalogPage() {
         async function fetchProducts() {
             try {
                 setLoading(true);
-                // Assuming table name is 'products' as per prompt
                 const { data, error } = await supabase
                     .from('products')
                     .select('*')
@@ -81,7 +79,6 @@ export default function ProductCatalogPage() {
                     </p>
                 </div>
 
-                {/* Toggle Locale */}
                 <button
                     onClick={toggleLocale}
                     className="rounded-full bg-teal-50 px-4 py-1 text-xs font-semibold text-teal-700 dark:bg-teal-900/30 dark:text-teal-400 hover:bg-teal-100 transition-colors"
@@ -119,5 +116,17 @@ export default function ProductCatalogPage() {
                 )}
             </main>
         </div>
+    );
+}
+
+export default function ProductCatalogPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
+                <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
+            </div>
+        }>
+            <ProductCatalogContent />
+        </Suspense>
     );
 }
