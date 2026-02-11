@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { supabase } from '@/lib/supabase';
+import { getProducts } from '@/app/actions/product-actions';
 import { ProductCard, Product } from '@/components/ProductCard';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
@@ -23,13 +23,7 @@ function ProductCatalogContent() {
         async function fetchProducts() {
             try {
                 setLoading(true);
-                const { data, error } = await supabase
-                    .from('products')
-                    .select('*')
-                    .order('name_ar', { ascending: true });
-
-                if (error) throw error;
-
+                const data = await getProducts();
                 const allProducts = data || [];
                 setProducts(allProducts);
 
