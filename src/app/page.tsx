@@ -30,7 +30,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[240px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {/* Featured Category: Medicines */}
           <Link href={`/products?category=Medicines&lang=${locale}`} className="group relative overflow-hidden rounded-[40px] bg-zinc-100 lg:col-span-2 lg:row-span-2 shadow-2xl transition-all duration-500 hover:shadow-shams-blue/20">
             <img

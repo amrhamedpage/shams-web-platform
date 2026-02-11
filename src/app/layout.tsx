@@ -69,8 +69,8 @@ export default function RootLayout({
           {children}
         </main>
 
-        {/* Bottom Nav Placeholder for Mobile - Will implement in Step 4 */}
-        <div className="md:hidden h-20" />
+        <BottomNav />
+        <div className="md:hidden h-24" />
 
         <Suspense fallback={null}>
           <Footer />

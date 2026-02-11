@@ -19,7 +19,7 @@ export function TopBar() {
     };
 
     return (
-        <div className="w-full bg-zinc-50 border-b border-zinc-200 py-2 text-xs font-medium text-zinc-600 dark:bg-black dark:border-zinc-800 dark:text-zinc-400">
+        <div className="w-full bg-zinc-50 border-b border-zinc-200 py-2 text-xs font-medium text-zinc-600 dark:bg-black dark:border-zinc-800 dark:text-zinc-400 hidden md:block">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 {/* Left Side (or Right in RTL) */}
                 <div className="flex items-center gap-4">
