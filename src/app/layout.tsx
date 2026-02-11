@@ -69,8 +69,10 @@ export default function RootLayout({
           {children}
         </main>
 
-        <BottomNav />
-        <div className="md:hidden h-24" />
+        <Suspense fallback={null}>
+          <BottomNav />
+          <div className="md:hidden h-24" />
+        </Suspense>
 
         <Suspense fallback={null}>
           <Footer />

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { ArrowRight, Pill, Heart, Zap, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { HeroCarousel } from '@/components/home/HeroCarousel';
@@ -16,7 +17,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
   return (
     <div className="flex flex-col gap-12 pb-20" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
-      <HeroCarousel />
+      <Suspense fallback={<div className="w-full h-[300px] md:h-[400px] lg:h-[480px] bg-zinc-100 animate-pulse rounded-none md:rounded-3xl mx-auto md:max-w-7xl md:mt-6" />}>
+        <HeroCarousel />
+      </Suspense>
 
 
       {/* Category Bento Grid */}
