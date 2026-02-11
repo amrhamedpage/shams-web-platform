@@ -95,8 +95,8 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
 
       {/* New Arrivals Section - Dynamic */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl font-black text-zinc-900 dark:text-white">
+        <div className="mb-6 md:mb-8 flex items-center justify-between">
+          <h2 className="text-2xl md:text-3xl font-black text-zinc-900 dark:text-white">
             {isRtl ? 'وصل حديثاً' : 'New Arrivals'}
           </h2>
           <div className="flex gap-2">
