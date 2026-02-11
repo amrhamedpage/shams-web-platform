@@ -82,13 +82,13 @@ export function HeroCarousel() {
                                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-md border border-white/30`}>
                                     {isRtl ? 'عروض حصرية' : 'Exclusive Offers'}
                                 </span>
-                                <h2 className="text-3xl md:text-5xl font-black leading-tight">
+                                <h2 className="text-2xl sm:text-3xl md:text-5xl font-black leading-tight">
                                     {isRtl ? slide.title_ar : slide.title_en}
                                 </h2>
-                                <p className="text-lg md:text-xl font-medium text-white/90">
+                                <p className="text-base md:text-xl font-medium text-white/90 line-clamp-2 md:line-clamp-none">
                                     {isRtl ? slide.subtitle_ar : slide.subtitle_en}
                                 </p>
-                                <button className={`mt-4 px-8 py-3 rounded-xl font-bold bg-white text-black hover:bg-zinc-100 transition-colors`}>
+                                <button className={`mt-2 md:mt-4 px-6 md:px-8 py-2.5 md:py-3 rounded-xl font-bold bg-white text-black hover:bg-zinc-100 transition-colors text-sm md:text-base`}>
                                     {isRtl ? 'تسوق الآن' : 'Shop Now'}
                                 </button>
                             </div>

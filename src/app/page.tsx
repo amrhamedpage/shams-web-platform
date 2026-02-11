@@ -24,70 +24,70 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
 
       {/* Category Bento Grid */}
       <section className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl font-black text-zinc-900 dark:text-white">
+        <div className="mb-6 md:mb-8 flex items-center justify-between">
+          <h2 className="text-2xl md:text-3xl font-black text-zinc-900 dark:text-white">
             {isRtl ? 'تسوق حسب الفئات' : 'Shop by Category'}
           </h2>
-          <Link href={`/products?lang=${locale}`} className="text-sm font-bold text-shams-blue hover:underline">
+          <Link href={`/products?lang=${locale}`} className="text-xs md:text-sm font-bold text-shams-blue hover:underline">
             {isRtl ? 'عرض الكل' : 'View All'}
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {/* Featured Category: Medicines */}
-          <Link href={`/products?category=Medicines&lang=${locale}`} className="group relative overflow-hidden rounded-[40px] bg-zinc-100 lg:col-span-2 lg:row-span-2 shadow-2xl transition-all duration-500 hover:shadow-shams-blue/20">
+          <Link href={`/products?category=Medicines&lang=${locale}`} className="group relative overflow-hidden rounded-[32px] md:rounded-[40px] bg-zinc-100 col-span-2 lg:row-span-2 shadow-xl md:shadow-2xl transition-all duration-500 hover:shadow-shams-blue/20 h-48 sm:h-64 lg:h-full">
             <img
               src="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=1200&auto=format&fit=crop&v=pharm1"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="Medicines"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-shams-blue/90 via-shams-blue/20 to-transparent z-10" />
-            <div className="absolute bottom-8 left-8 right-8 z-20">
-              <h3 className="text-4xl font-black text-white">{isRtl ? 'الأدوية' : 'Medicines'}</h3>
-              <p className="text-white/80 text-lg mt-2 font-medium">{isRtl ? 'كل ما تحتاجه لصحتك' : 'Everything you need for health'}</p>
+            <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8 right-6 md:right-8 z-20">
+              <h3 className="text-2xl md:text-4xl font-black text-white">{isRtl ? 'الأدوية' : 'Medicines'}</h3>
+              <p className="text-white/80 text-sm md:text-lg mt-1 md:mt-2 font-medium">{isRtl ? 'كل ما تحتاجه لصحتك' : 'Everything you need for health'}</p>
             </div>
           </Link>
 
           {/* Skin Care / Beauty */}
-          <Link href={`/products?category=Skin%20Care&lang=${locale}`} className="group relative overflow-hidden rounded-[40px] bg-zinc-100 shadow-2xl transition-all duration-500 hover:shadow-shams-green/20">
+          <Link href={`/products?category=Skin%20Care&lang=${locale}`} className="group relative overflow-hidden rounded-[32px] md:rounded-[40px] bg-zinc-100 shadow-xl md:shadow-2xl transition-all duration-500 hover:shadow-shams-green/20 aspect-square sm:aspect-auto">
             <img
               src="https://images.unsplash.com/photo-1596462502278-27bfdc403328?q=80&w=800&auto=format&fit=crop&v=pharm2"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="Beauty"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-shams-green/90 via-shams-green/10 to-transparent z-10" />
-            <div className="absolute bottom-6 left-6 right-6 z-20">
-              <h3 className="text-2xl font-black text-white">{isRtl ? 'جمال وصحة' : 'Beauty & Care'}</h3>
+            <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 z-20">
+              <h3 className="text-lg md:text-2xl font-black text-white">{isRtl ? 'جمال وصحة' : 'Beauty & Care'}</h3>
             </div>
           </Link>
 
           {/* Vitamins */}
-          <Link href={`/products?category=Vitamins&lang=${locale}`} className="group relative overflow-hidden rounded-[40px] bg-zinc-100 shadow-2xl transition-all duration-500 hover:shadow-shams-yellow/20">
+          <Link href={`/products?category=Vitamins&lang=${locale}`} className="group relative overflow-hidden rounded-[32px] md:rounded-[40px] bg-zinc-100 shadow-xl md:shadow-2xl transition-all duration-500 hover:shadow-shams-yellow/20 aspect-square sm:aspect-auto">
             <img
               src="https://images.unsplash.com/photo-1550573105-df1603baaa91?q=80&w=800&auto=format&fit=crop&v=pharm3"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="Vitamins"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-shams-yellow/90 via-shams-yellow/10 to-transparent z-10" />
-            <div className="absolute bottom-6 left-6 right-6 z-20">
-              <h3 className="text-2xl font-black text-zinc-900">{isRtl ? 'فيتامينات' : 'Vitamins'}</h3>
+            <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 z-20">
+              <h3 className="text-lg md:text-2xl font-black text-zinc-900">{isRtl ? 'فيتامينات' : 'Vitamins'}</h3>
             </div>
           </Link>
 
           {/* Baby Care */}
-          <Link href={`/products?category=Baby%20Care&lang=${locale}`} className="group relative col-span-2 lg:col-span-2 overflow-hidden rounded-[40px] bg-zinc-100 shadow-2xl transition-all duration-500">
+          <Link href={`/products?category=Baby%20Care&lang=${locale}`} className="group relative col-span-2 overflow-hidden rounded-[32px] md:rounded-[40px] bg-zinc-100 shadow-xl md:shadow-2xl transition-all duration-500 min-h-[160px] sm:min-h-0">
             <img
               src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?q=80&w=1200&auto=format&fit=crop&v=pharm4"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               alt="Baby Care"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-transparent to-transparent z-10" />
-            <div className="absolute bottom-8 left-8 right-8 z-20 flex items-end justify-between">
+            <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8 right-6 md:right-8 z-20 flex items-end justify-between gap-4">
               <div>
-                <h3 className="text-3xl font-black text-white">{isRtl ? 'عناية الطفل متميزة' : 'Premium Baby Care'}</h3>
-                <p className="text-zinc-300 text-lg mt-1 font-medium">{isRtl ? 'أمان لطفلك' : 'Safety for your child'}</p>
+                <h3 className="text-2xl md:text-3xl font-black text-white">{isRtl ? 'عناية الطفل متميزة' : 'Premium Baby Care'}</h3>
+                <p className="text-zinc-300 text-xs md:text-lg mt-0.5 md:mt-1 font-medium italic">{isRtl ? 'أمان لطفلك' : 'Safety for your child'}</p>
               </div>
-              <ArrowRight className="text-white bg-white/20 backdrop-blur-md rounded-full p-2 w-12 h-12 transition-all group-hover:bg-shams-blue group-hover:translate-x-2" />
+              <ArrowRight className="text-white bg-white/20 backdrop-blur-md rounded-full p-2 w-10 h-10 md:w-12 md:h-12 transition-all group-hover:bg-shams-blue group-hover:translate-x-2 flex-shrink-0" />
             </div>
           </Link>
         </div>
@@ -106,7 +106,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {newArrivals.map((product) => (
             <ProductCard
               key={product.id}
@@ -200,7 +200,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
       {/* Featured Values */}
       <section className="bg-zinc-50 py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:gap-8 sm:grid-cols-2">
             {[
               {
                 icon: Heart,
@@ -215,12 +215,12 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
                 color: 'bg-blue-50 text-blue-600'
               },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-4 rounded-[32px] bg-white p-8 text-center transition-all hover:shadow-xl dark:bg-zinc-900">
-                <div className={cn("flex h-16 w-16 items-center justify-center rounded-2xl", item.color)}>
-                  <item.icon size={32} />
+              <div key={i} className="flex flex-col items-center gap-4 rounded-[32px] bg-white p-6 md:p-8 text-center transition-all hover:shadow-xl dark:bg-zinc-900 border border-zinc-50 dark:border-zinc-800">
+                <div className={cn("flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-2xl", item.color)}>
+                  <item.icon size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{item.title}</h3>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">{item.desc}</p>
+                <h3 className="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">{item.title}</h3>
+                <p className="text-xs md:text-sm text-zinc-500 dark:text-zinc-400">{item.desc}</p>
               </div>
             ))}
           </div>
