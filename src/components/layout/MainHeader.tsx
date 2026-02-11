@@ -33,7 +33,7 @@ export function MainHeader() {
 
                     {/* Logo - Refined Shams Branding */}
                     <Link href={`/?lang=${locale}`} className="flex-shrink-0 flex items-center gap-2 md:gap-3 group transition-transform duration-300 hover:scale-105">
-                        <div className="relative h-11 w-11 md:h-14 md:w-14 overflow-hidden rounded-[1rem] md:rounded-2xl bg-white shadow-lg shadow-shams-blue/10 ring-1 ring-zinc-100 group-hover:ring-shams-blue/20 transition-all">
+                        <div className="relative h-9 w-9 md:h-12 md:w-12 overflow-hidden rounded-xl bg-white shadow-lg shadow-shams-blue/10 ring-1 ring-zinc-100 group-hover:ring-shams-blue/20 transition-all">
                             <Image
                                 src="/shams-logo-web.svg"
                                 alt="Shams Pharmacy"
@@ -41,14 +41,11 @@ export function MainHeader() {
                                 className="object-contain p-1.5 transition-transform duration-500 group-hover:scale-110"
                             />
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-2xl md:text-3xl font-black tracking-tighter text-shams-blue">
-                                {isRtl ? 'شمس' : 'Shams'}
+                        <h1 className="flex items-center gap-1.5 whitespace-nowrap">
+                            <span className="text-lg md:text-2xl font-black tracking-tighter text-shams-blue">
+                                {isRtl ? 'صيدليات شمس' : 'Shams Pharmacy'}
                             </span>
-                            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.2em] text-shams-yellow -mt-1.5 whitespace-nowrap">
-                                {isRtl ? 'صيدليات' : 'Pharmacy'}
-                            </span>
-                        </div>
+                        </h1>
                     </Link>
 
                     {/* Smart Search Bar - Featured, Glassy, Prominent */}
@@ -76,9 +73,9 @@ export function MainHeader() {
                             { icon: User, label: isRtl ? 'حسابي' : 'Account', href: '#' },
                             { icon: Heart, label: isRtl ? 'المفضلة' : 'Wishlist', href: '#' },
                         ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all dark:text-zinc-300 dark:hover:bg-zinc-800/80 group">
+                            <Link key={idx} href={item.href} className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all group">
                                 <div className="transition-transform duration-300 group-hover:scale-110">
-                                    <item.icon size={22} className="sm:w-[26px] sm:h-[26px]" strokeWidth={2} />
+                                    <item.icon size={24} strokeWidth={2} />
                                 </div>
                                 <span className="text-[10px] font-bold uppercase tracking-wider hidden lg:block">
                                     {item.label}
@@ -88,11 +85,11 @@ export function MainHeader() {
 
                         <button
                             onClick={() => setIsCartOpen(true)}
-                            className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-shams-blue bg-shams-blue/5 hover:bg-shams-blue/10 transition-all group relative"
+                            className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all group relative"
                         >
                             <div className="transition-transform duration-300 group-hover:scale-110">
-                                <ShoppingCart size={22} className="sm:w-[26px] sm:h-[26px]" strokeWidth={2} />
-                                <span className="absolute -top-1 -right-1 h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-shams-yellow text-shams-blue text-[10px] sm:text-[11px] font-black flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">
+                                <ShoppingCart size={24} strokeWidth={2} />
+                                <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-shams-blue text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">
                                     {getItemCount()}
                                 </span>
                             </div>
