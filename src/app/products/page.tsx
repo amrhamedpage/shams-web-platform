@@ -2,7 +2,8 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { getProducts } from '@/app/actions/product-actions';
-import { ProductCard, Product } from '@/components/ProductCard';
+import { ProductCard } from '@/components/ProductCard';
+import { Product } from '@/types/product';
 import { ProductGrid } from '@/components/ProductGrid';
 import { SearchBar } from '@/components/SearchBar';
 import { AlertCircle, Loader2 } from 'lucide-react';
