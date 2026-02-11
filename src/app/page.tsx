@@ -1,93 +1,22 @@
 import Link from 'next/link';
 import { ArrowRight, Pill, Heart, Zap, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { HeroCarousel } from '@/components/home/HeroCarousel';
+import { ProductCard } from '@/components/ProductCard';
+import { getProducts } from '@/app/actions/product-actions';
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
   const { lang } = await searchParams;
   const locale = lang === 'en' ? 'en' : 'ar';
   const isRtl = locale === 'ar';
 
+  // Fetch dynamic products
+  const newArrivals = await getProducts({ newArrivals: true, limit: 10 });
+
   return (
     <div className="flex flex-col gap-12 pb-20" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white pb-20 pt-24 dark:bg-black lg:min-h-[80vh] lg:flex lg:items-center">
-        {/* Background Accents (Subtle) */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -left-[10%] -top-[10%] h-[600px] w-[600px] rounded-full bg-shams-blue/5 blur-[120px] dark:bg-shams-blue/20" />
-        </div>
-
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            {/* Text Content: Reverted to original dark/blue style */}
-            <div className={cn("flex flex-col gap-6 text-center", isRtl ? "lg:text-right" : "lg:text-left")}>
-              <div className="inline-flex items-center gap-2 self-center rounded-full bg-shams-blue/5 px-4 py-1.5 text-sm font-extrabold text-shams-blue ring-1 ring-shams-blue/20 dark:bg-shams-blue/30 lg:self-start">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shams-blue opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-shams-blue"></span>
-                </span>
-                <span>{isRtl ? 'صيدلية موثوقة في المملكة' : 'Trusted Pharmacy in KSA'}</span>
-              </div>
-              <h1 className="text-5xl font-black leading-[1.1] tracking-tight text-zinc-900 dark:text-white sm:text-7xl">
-                {isRtl ? 'صحتك، هي' : 'Your Health,'} <br />
-                <span className="text-shams-blue">
-                  {isRtl ? 'الأولوية الأكبر' : 'Our Biggest Priority'}
-                </span>
-              </h1>
-              <p className="max-w-lg mx-auto text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 lg:mx-0">
-                {isRtl
-                  ? 'تسوق أفضل منتجات الصحة والجمال والأدوية مع تجربة رقمية فريدة تليق بك.'
-                  : 'Shop the best health, beauty and medical products with a unique digital experience designed for you.'}
-              </p>
-              <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:justify-center lg:justify-start">
-                <Link
-                  href={`/products?lang=${locale}`}
-                  className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-shams-blue px-10 py-5 text-lg font-black text-white transition-all hover:bg-shams-blue/90 active:scale-95 shadow-2xl shadow-shams-blue/40"
-                >
-                  {isRtl ? 'تسوق الآن' : 'Shop Now'}
-                  <ArrowRight className={cn("transition-transform group-hover:translate-x-1", isRtl && "rotate-180 group-hover:-translate-x-1")} size={22} />
-                </Link>
-                <div className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-4 text-zinc-500 font-bold dark:text-zinc-400">
-                  <div className="flex -space-x-2">
-                    {[
-                      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop',
-                      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
-                      'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&h=80&fit=crop'
-                    ].map((src, i) => (
-                      <div key={i} className="h-10 w-10 overflow-hidden rounded-full border-2 border-white bg-zinc-100 dark:border-zinc-800">
-                        <img src={src} className="h-full w-full object-cover" alt="User" />
-                      </div>
-                    ))}
-                  </div>
-                  <span className="text-sm font-bold ml-2">{isRtl ? '50ك+ عميل مرتاح' : '50k+ Happy Customers'}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Visual Hero Panel: Clear and impactful side-by-side photo */}
-            <div className="relative hidden lg:block h-[500px] w-full">
-              <div className="absolute inset-0 rounded-[60px] bg-gradient-to-br from-shams-blue to-[#10ACDC] rotate-3 opacity-10" />
-              <div className="absolute inset-0 overflow-hidden rounded-[60px] border-[12px] border-white bg-white shadow-2xl dark:border-zinc-900">
-                <img
-                  src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=2079&auto=format&fit=crop"
-                  alt="Modern Pharmacy Visual"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-12">
-                  <div className="inline-flex items-center gap-3 rounded-2xl bg-white/20 p-4 backdrop-blur-xl ring-1 ring-white/30">
-                    <div className="h-12 w-12 rounded-full bg-shams-blue flex items-center justify-center text-white">
-                      <ShieldCheck size={24} />
-                    </div>
-                    <div className="text-white">
-                      <p className="text-sm font-bold opacity-80">{isRtl ? 'رعاية معتمدة' : 'Certified Care'}</p>
-                      <p className="text-sm font-black">{isRtl ? 'وزارة الصحة' : 'MOH Approved'}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel />
 
 
       {/* Category Bento Grid */}
@@ -161,7 +90,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
         </div>
       </section>
 
-      {/* Trending Products */}
+      {/* New Arrivals Section - Dynamic */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-3xl font-black text-zinc-900 dark:text-white">
@@ -175,27 +104,91 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {newArrivals.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              locale={locale}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Shop by Brand - Horizontal Slider */}
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-10 flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
+              {isRtl ? 'تسوق حسب الماركة' : 'Shop by Brand'}
+            </h2>
+            <div className="h-1 w-20 bg-shams-blue mt-2 rounded-full" />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-6 overflow-x-auto no-scrollbar py-4 px-2">
           {[
-            { name: isRtl ? 'بانادول ادفانس' : 'Panadol Advance', price: '12.50 SAR', img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&h=400&fit=crop&v=prod_fix_1' },
-            { name: isRtl ? 'سيروم فيتامين سي' : 'Vitamin C Serum', price: '85.00 SAR', img: 'https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?q=80&w=400&h=400&fit=crop&v=prod_fix_2' },
-            { name: isRtl ? 'شامبو اطفال' : 'Baby Shampoo', price: '45.00 SAR', img: 'https://images.unsplash.com/photo-1515488764276-beab7607c1e6?q=80&w=400&h=400&fit=crop&v=prod_fix_3' },
-            { name: isRtl ? 'فوليك اسيد' : 'Folic Acid', price: '18.00 SAR', img: 'https://images.unsplash.com/photo-1471864190281-ad5fe9bb0720?q=80&w=400&h=400&fit=crop&v=prod_fix_4' },
-            { name: isRtl ? 'كريم مرطب' : 'Moisturizer Cream', price: '120.00 SAR', img: 'https://images.unsplash.com/photo-1601049541289-9b1b7abcad59?q=80&w=400&h=400&fit=crop&v=prod_fix_5' },
-          ].map((product, i) => (
-            <div key={i} className="group relative flex flex-col gap-4 rounded-[32px] bg-white p-4 shadow-xl shadow-black/5 transition-all hover:-translate-y-1 hover:shadow-shams-blue/10 dark:bg-zinc-900">
-              <div className="relative aspect-square overflow-hidden rounded-2xl bg-zinc-50">
-                <img src={product.img} className="h-full w-full object-cover transition-transform group-hover:scale-110" alt={product.name} />
-                <div className="absolute top-2 right-2 rounded-full bg-white/90 p-2 text-shams-blue backdrop-blur-sm shadow-sm">
-                  <Heart size={16} />
+            { name: 'Vichy', logo: 'https://cdn.worldvectorlogo.com/logos/vichy.svg' },
+            { name: 'La Roche-Posay', logo: 'https://cdn.worldvectorlogo.com/logos/la-roche-posay.svg' },
+            { name: 'CeraVe', logo: 'https://cdn.worldvectorlogo.com/logos/cerave.svg' },
+            { name: 'Eucerin', logo: 'https://cdn.worldvectorlogo.com/logos/eucerin.svg' },
+            { name: 'Bioderma', logo: 'https://cdn.worldvectorlogo.com/logos/bioderma.svg' },
+            { name: 'Cetaphil', logo: 'https://cdn.worldvectorlogo.com/logos/cetaphil.svg' },
+            { name: 'Panadol', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Panadol_logo.svg/1200px-Panadol_logo.svg.png' },
+          ].map((brand, i) => (
+            <div key={i} className="flex-shrink-0 w-40 h-24 rounded-2xl bg-white shadow-lg shadow-black/5 flex items-center justify-center p-6 border border-zinc-50 hover:border-shams-blue/30 transition-all hover:scale-105 cursor-pointer dark:bg-zinc-900 dark:border-zinc-800">
+              <span className="font-black text-xl text-zinc-300 group-hover:text-zinc-500 transition-colors uppercase tracking-widest">{brand.name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Daily Health Wisdom - Articles Section */}
+      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-10 text-center">
+          <h2 className="text-4xl font-black text-zinc-900 dark:text-white mb-4">
+            {isRtl ? 'الحكمة الصحية اليومية' : 'Daily Health Wisdom'}
+          </h2>
+          <p className="text-zinc-500 font-medium max-w-2xl mx-auto">
+            {isRtl ? 'نصائح ومقالات طبية من خبراء صيدليات شمس للعناية بصحتك وجمالك' : 'Medical tips and articles from Shams experts for your health and beauty care'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              title: isRtl ? 'كيف تختار الفيتامينات المناسبة لعمرك؟' : 'How to choose right vitamins for your age?',
+              category: isRtl ? 'فيتامينات' : 'Vitamins',
+              img: 'https://images.unsplash.com/photo-1550573105-df1603baaa91?q=80&w=800&auto=format&fit=crop',
+              date: '12 Feb 2026'
+            },
+            {
+              title: isRtl ? '٥ خطوات لبشرة نضرة في فضل الشتاء' : '5 Steps for glowing skin in winter',
+              category: isRtl ? 'العناية بالبشرة' : 'Skin Care',
+              img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403328?q=80&w=800&auto=format&fit=crop',
+              date: '10 Feb 2026'
+            },
+            {
+              title: isRtl ? 'نصائح الخبراء للعناية بشعر طفلك' : 'Expert tips for your baby\'s hair care',
+              category: isRtl ? 'عناية الطفل' : 'Baby Care',
+              img: 'https://images.unsplash.com/photo-1515488764276-beab7607c1e6?q=80&w=800&auto=format&fit=crop',
+              date: '08 Feb 2026'
+            }
+          ].map((post, i) => (
+            <div key={i} className="group cursor-pointer">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[32px] mb-6 shadow-2xl transition-all group-hover:shadow-shams-blue/20">
+                <img src={post.img} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" alt={post.title} />
+                <div className="absolute top-6 left-6">
+                  <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-black uppercase text-zinc-900 shadow-sm">
+                    {post.category}
+                  </span>
                 </div>
               </div>
-              <div className="flex flex-col gap-1">
-                <h4 className="font-bold text-zinc-900 dark:text-white line-clamp-1">{product.name}</h4>
-                <p className="text-shams-blue font-black">{product.price}</p>
+              <div className="px-2">
+                <span className="text-[10px] font-black text-shams-blue uppercase tracking-widest">{post.date}</span>
+                <h3 className="text-xl font-black text-zinc-900 mt-2 line-clamp-2 leading-snug transition-colors group-hover:text-shams-blue dark:text-white">
+                  {post.title}
+                </h3>
               </div>
-              <button className="w-full rounded-xl bg-zinc-100 py-3 text-sm font-black transition-all hover:bg-shams-blue hover:text-white dark:bg-zinc-800">
-                {isRtl ? 'أضف للسلة' : 'Add to Cart'}
-              </button>
             </div>
           ))}
         </div>
@@ -229,7 +222,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
             ))}
           </div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }

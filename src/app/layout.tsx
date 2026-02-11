@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
+import "./globals.css";
+// import { Navbar } from "@/components/Navbar";
+import { TopBar } from "@/components/layout/TopBar";
+import { MainHeader } from "@/components/layout/MainHeader";
+import { CategoryNav } from "@/components/layout/CategoryNav";
+import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/Footer";
 import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const ibmPlexArabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-ibm-plex-arabic",
+  subsets: ["arabic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -43,16 +54,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar">
+    <html lang="ar" className={ibmPlexArabic.variable} dir="rtl">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-shams-blue/10 selection:text-shams-blue dark:bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexArabic.variable} font-sans antialiased selection:bg-shams-blue/10 selection:text-shams-blue dark:bg-black overflow-x-hidden`}
       >
         <Suspense fallback={null}>
-          <Navbar />
+          <div className="flex flex-col sticky top-0 z-50 transition-all duration-500">
+            <TopBar />
+            <MainHeader />
+            <CategoryNav />
+          </div>
         </Suspense>
         <main className="min-h-screen">
           {children}
         </main>
+
+        {/* Bottom Nav Placeholder for Mobile - Will implement in Step 4 */}
+        <div className="md:hidden h-20" />
+
         <Suspense fallback={null}>
           <Footer />
         </Suspense>

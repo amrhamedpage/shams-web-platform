@@ -1,7 +1,8 @@
-import { supabase } from '@/lib/supabase';
+import { getProductById } from '@/app/actions/product-actions';
 import { ProductDetail } from '@/components/ProductDetail';
 import { notFound } from 'next/navigation';
-import { Product } from '@/components/ProductCard';
+import { supabase } from '@/lib/supabase';
+import { Product } from '@/types/product';
 
 interface PageProps {
     params: Promise<{ id: string }>;
@@ -20,15 +21,10 @@ export default async function ProductPage({ params, searchParams }: PageProps) {
         notFound();
     }
 
-    // Fetch product from Supabase
-    const { data: product, error } = await supabase
-        .from('products')
-        .select('*')
-        .eq('id', id)
-        .single();
+    // Fetch product using the robust server action (includes mock fallback)
+    const product = await getProductById(id);
 
-    if (error || !product) {
-        console.error('Error fetching product:', error?.message);
+    if (!product) {
         notFound();
     }
 
@@ -43,14 +39,23 @@ export default async function ProductPage({ params, searchParams }: PageProps) {
     );
 }
 
-// Generate static params for common products for sub-second performance
+// Generate static params for common products
 export async function generateStaticParams() {
-    const { data: products } = await supabase
-        .from('products')
-        .select('id')
-        .limit(10); // Prerender top 10 products
+    try {
+        // If Supabase is not ready, return empty to skip pre-rendering and avoid build crashes
+        if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+            return [];
+        }
 
-    return (products || []).map((product) => ({
-        id: product.id,
-    }));
+        const { data: products } = await supabase
+            .from('products')
+            .select('id')
+            .limit(10);
+
+        return (products || []).map((product) => ({
+            id: product.id,
+        }));
+    } catch (error) {
+        return [];
+    }
 }

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Sparkles, ArrowRight, CheckCircle2, Pill, Activity, Zap, Moon, Brain, ChevronRight, Loader2, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useCart } from '@/lib/store/useCart';
+import { Product } from '@/types/product';
 
 interface Question {
     id: string;
@@ -42,7 +44,24 @@ export function AIHealthAdvisor({ locale = 'ar' }: { locale?: 'ar' | 'en' }) {
     const [step, setStep] = useState<'intro' | 'quiz' | 'analyzing' | 'result'>('intro');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Record<string, string>>({});
+    const { addItem } = useCart();
     const isRtl = locale === 'ar';
+
+    const bundleProduct: Product = {
+        id: 'ai-bundle-1',
+        name_ar: 'باقة الطاقة والمناعة القصوى',
+        name_en: 'Ultimate Energy & Immunity Bundle',
+        description_ar: 'تشمل: فيتامين سي، أوميغا 3، كومبلكس ب',
+        description_en: 'Includes: Vitamin C, Omega 3, B-Complex',
+        price: 249.00,
+        category: 'Vitamins',
+        image_url: 'https://images.unsplash.com/photo-1550573105-df1603baaa91?q=80&w=800&auto=format&fit=crop',
+        stock_quantity: 100,
+        is_new: true,
+        is_featured: true,
+        brand_ar: 'شمس',
+        brand_en: 'Shams'
+    };
 
     const handleAnswer = (questionId: string, optionId: string) => {
         setAnswers(prev => ({ ...prev, [questionId]: optionId }));
@@ -177,8 +196,11 @@ export function AIHealthAdvisor({ locale = 'ar' }: { locale?: 'ar' | 'en' }) {
                             </div>
                             <div className="text-center md:text-right">
                                 <div className="text-3xl font-black text-shams-blue">249.00 {isRtl ? 'ر.س' : 'SAR'}</div>
-                                <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-shams-blue px-8 py-3 font-bold text-white transition-all hover:bg-shams-blue/90 dark:text-white">
-                                    <ShoppingCart size={20} />
+                                <button
+                                    onClick={() => addItem(bundleProduct)}
+                                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-shams-blue px-8 py-3 font-bold text-white transition-all hover:bg-shams-blue/90 dark:text-white group active:scale-95"
+                                >
+                                    <ShoppingCart size={20} className="group-hover:scale-110 transition-transform" />
                                     {isRtl ? 'أضف الباقة للسلة' : 'Add Bundle to Cart'}
                                 </button>
                             </div>

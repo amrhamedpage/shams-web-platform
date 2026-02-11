@@ -30,8 +30,31 @@ function ProductCatalogContent() {
 
                 if (error) throw error;
 
-                setProducts(data || []);
-                setFilteredProducts(data || []);
+                const allProducts = data || [];
+                setProducts(allProducts);
+
+                // Initial filtering based on URL params
+                const categoryParam = searchParams.get('category');
+                const queryParam = searchParams.get('q');
+
+                let filtered = allProducts;
+
+                if (categoryParam) {
+                    filtered = filtered.filter(p =>
+                        p.category.toLowerCase() === categoryParam.toLowerCase()
+                    );
+                }
+
+                if (queryParam) {
+                    const lowerQuery = queryParam.toLowerCase();
+                    filtered = filtered.filter(p =>
+                        p.name_ar.toLowerCase().includes(lowerQuery) ||
+                        p.name_en.toLowerCase().includes(lowerQuery) ||
+                        p.category.toLowerCase().includes(lowerQuery)
+                    );
+                }
+
+                setFilteredProducts(filtered);
             } catch (err: any) {
                 console.error('Error fetching products:', err.message);
                 setError(locale === 'ar' ? 'عذراً، تعذر تحميل المنتجات. يرجى المحاولة لاحقاً.' : 'Failed to load products. Please try again later.');
@@ -41,21 +64,16 @@ function ProductCatalogContent() {
         }
 
         fetchProducts();
-    }, [locale]);
+    }, [locale, searchParams]);
 
     const handleSearch = (query: string) => {
-        if (!query.trim()) {
-            setFilteredProducts(products);
-            return;
+        const params = new URLSearchParams(searchParams);
+        if (query) {
+            params.set('q', query);
+        } else {
+            params.delete('q');
         }
-
-        const lowerQuery = query.toLowerCase();
-        const filtered = products.filter(p =>
-            p.name_ar.toLowerCase().includes(lowerQuery) ||
-            p.name_en.toLowerCase().includes(lowerQuery) ||
-            p.category.toLowerCase().includes(lowerQuery)
-        );
-        setFilteredProducts(filtered);
+        router.push(`?${params.toString()}`);
     };
 
     const toggleLocale = () => {
