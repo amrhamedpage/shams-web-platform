@@ -29,7 +29,7 @@ export function MainHeader() {
     return (
         <div className="w-full bg-white/80 backdrop-blur-xl border-b border-zinc-100/50 py-3 md:py-4 sticky top-0 z-[60] dark:bg-black/80 dark:border-zinc-800/50">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between gap-6 lg:gap-12">
+                <div className="flex items-center justify-between gap-2 md:gap-6 lg:gap-12">
 
                     {/* Logo - Refined Shams Branding */}
                     <Link href={`/?lang=${locale}`} className="flex-shrink-0 flex items-center gap-2 md:gap-3 group transition-transform duration-300 hover:scale-105">

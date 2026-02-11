@@ -39,7 +39,7 @@ export function CartDrawer({ isOpen, onClose, locale }: CartDrawerProps) {
             {/* Sidebar */}
             <div
                 className={cn(
-                    "fixed top-0 bottom-0 w-full max-w-md bg-white dark:bg-zinc-950 z-[101] shadow-2xl transition-transform duration-500 ease-out flex flex-col",
+                    "fixed top-0 bottom-0 w-full md:max-w-md bg-white dark:bg-zinc-950 z-[101] shadow-2xl transition-transform duration-500 ease-out flex flex-col",
                     isRtl ? (isOpen ? "left-0" : "-left-full") : (isOpen ? "right-0" : "-right-full")
                 )}
                 dir={isRtl ? 'rtl' : 'ltr'}
