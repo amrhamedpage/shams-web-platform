@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ShoppingCart, Heart, ShieldCheck, Truck, RotateCcw, Box } from 'lucide-react';
-import { Product } from './ProductCard';
+import { Product } from '@/types/product';
 import { getLiveStockAction } from '@/app/actions/erp-actions';
 import { getDeliveryEstimateAction } from '@/app/actions/delivery-actions';
 import { ERPStockStatus } from '@/lib/solver-erp';
@@ -140,10 +140,10 @@ export function ProductDetail({ product, locale = 'ar' }: ProductDetailProps) {
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <button
                         onClick={() => setIsCheckoutOpen(true)}
-                        disabled={!product.in_stock}
+                        disabled={product.stock_quantity <= 0}
                         className={cn(
                             "flex h-14 flex-1 items-center justify-center gap-3 rounded-2xl bg-zinc-900 text-lg font-bold text-white transition-all hover:bg-zinc-800 active:scale-95 dark:bg-zinc-50 dark:text-zinc-900",
-                            !product.in_stock && "cursor-not-allowed opacity-50"
+                            product.stock_quantity <= 0 && "cursor-not-allowed opacity-50"
                         )}
                     >
                         <ShoppingCart size={22} />
