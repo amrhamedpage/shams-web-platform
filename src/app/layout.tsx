@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="ar" className={ibmPlexArabic.variable} dir="rtl">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexArabic.variable} font-sans antialiased selection:bg-shams-blue/10 selection:text-shams-blue dark:bg-black overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexArabic.variable} font-sans antialiased selection:bg-shams-blue/10 selection:text-shams-blue overflow-x-hidden`}
       >
         <Suspense fallback={null}>
           <div className="flex flex-col sticky top-0 z-50 transition-all duration-500">
@@ -65,7 +65,7 @@ export default function RootLayout({
             <CategoryNav />
           </div>
         </Suspense>
-        <main className="min-h-screen">
+        <main className="min-h-screen px-4 sm:px-6 lg:px-8">
           {children}
         </main>
 

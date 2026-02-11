@@ -71,14 +71,14 @@ export function MainHeader() {
                     </form>
 
                     {/* Premium Actions */}
-                    <div className="flex items-center gap-1 sm:gap-4">
+                    <div className="flex items-center gap-0.5 sm:gap-4">
                         {[
                             { icon: User, label: isRtl ? 'حسابي' : 'Account', href: '#' },
                             { icon: Heart, label: isRtl ? 'المفضلة' : 'Wishlist', href: '#' },
                         ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="flex flex-col items-center gap-1.5 p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all dark:text-zinc-400 dark:hover:bg-zinc-800/80 group">
+                            <Link key={idx} href={item.href} className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all dark:text-zinc-300 dark:hover:bg-zinc-800/80 group">
                                 <div className="transition-transform duration-300 group-hover:scale-110">
-                                    <item.icon size={26} strokeWidth={1.5} />
+                                    <item.icon size={22} className="sm:w-[26px] sm:h-[26px]" strokeWidth={2} />
                                 </div>
                                 <span className="text-[10px] font-bold uppercase tracking-wider hidden lg:block">
                                     {item.label}
@@ -88,11 +88,11 @@ export function MainHeader() {
 
                         <button
                             onClick={() => setIsCartOpen(true)}
-                            className="flex flex-col items-center gap-1.5 p-2 rounded-2xl text-shams-blue bg-shams-blue/5 hover:bg-shams-blue/10 transition-all group relative"
+                            className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-shams-blue bg-shams-blue/5 hover:bg-shams-blue/10 transition-all group relative"
                         >
                             <div className="transition-transform duration-300 group-hover:scale-110">
-                                <ShoppingCart size={26} strokeWidth={2} />
-                                <span className="absolute -top-1 -right-1 h-6 w-6 rounded-full bg-shams-yellow text-shams-blue text-[11px] font-black flex items-center justify-center border-2 border-white dark:border-black shadow-sm group-hover:scale-110 transition-transform">
+                                <ShoppingCart size={22} className="sm:w-[26px] sm:h-[26px]" strokeWidth={2} />
+                                <span className="absolute -top-1 -right-1 h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-shams-yellow text-shams-blue text-[10px] sm:text-[11px] font-black flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">
                                     {getItemCount()}
                                 </span>
                             </div>
