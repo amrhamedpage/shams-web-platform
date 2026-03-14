@@ -8,16 +8,18 @@ import { useSearchParams } from 'next/navigation';
 const slides = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1547032175-7fc8c7bd15b3?q=80&w=2070&auto=format&fit=crop",
-        title_ar: "نحن نهتم بصحتك وجمالك",
-        subtitle_ar: "تشكيلة واسعة من مستحضرات التجميل والعناية الشخصية بأسعار منافسة",
-        title_en: "We Care for Your Health & Beauty",
-        subtitle_en: "Wide range of beauty and personal care products at competitive prices",
+        // Father and Baby in Pharmacy
+        image: "/images/hero/carousel3.png",
+        title_ar: "نحن نهتم بصحة عائلتك",
+        subtitle_ar: "تشكيلة واسعة من منتجات العناية بالصحة لك ولعائلتك",
+        title_en: "We Care for Your Family's Health",
+        subtitle_en: "Comprehensive health and personal care products for the whole family",
         bg_color: "from-blue-900/40"
     },
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2069&auto=format&fit=crop",
+        // Fruits and Vitamins
+        image: "/images/hero/carousel1.png",
         title_ar: "كل ما تحتاجه من فيتامينات",
         subtitle_ar: "عزز مناعتك مع أفضل المكملات الغذائية المختارة بعناية",
         title_en: "All Your Vitamin Needs",
@@ -26,7 +28,8 @@ const slides = [
     },
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=2070&auto=format&fit=crop",
+        // Mom and Baby
+        image: "/images/hero/carousel2.png",
         title_ar: "عروض مذهلة على مستلزمات الطفل",
         subtitle_ar: "أفضل المنتجات العالمية للعناية بطفلك بأفضل الأسعار",
         title_en: "Amazing Deals on Baby Essentials",
@@ -56,7 +59,7 @@ export function HeroCarousel() {
     }, []);
 
     return (
-        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[480px] overflow-hidden rounded-none md:rounded-3xl shadow-xl mx-auto md:max-w-7xl md:mt-6 group">
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[480px] overflow-hidden shadow-xl group">
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
@@ -71,25 +74,29 @@ export function HeroCarousel() {
                             className="object-cover"
                             priority={index === 0}
                         />
-                        {/* Gradient Overlay */}
-                        <div className={`absolute inset-0 bg-gradient-to-r ${isRtl ? 'from-black/70 to-transparent' : 'from-black/70 to-transparent'} rtl:bg-gradient-to-l`} />
+                        {/* Premium Transparent Overlay so text is readable but image pops on right */}
+                        <div className={`absolute inset-0 bg-gradient-to-r ${isRtl ? 'from-[#263C98]/90 via-[#263C98]/60 to-transparent' : 'from-[#263C98]/90 via-[#263C98]/60 to-transparent'} opacity-100 z-10 rtl:bg-gradient-to-l`} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent z-10" />
                     </div>
 
                     {/* Text Content */}
-                    <div className="absolute inset-0 flex items-center">
+                    <div className="absolute inset-0 flex items-center z-20">
                         <div className="mx-auto w-full max-w-7xl px-8 md:px-16">
-                            <div className="max-w-xl text-white space-y-4">
-                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-md border border-white/30`}>
-                                    {isRtl ? 'عروض حصرية' : 'Exclusive Offers'}
+                            <div className="max-w-xl text-white space-y-6">
+                                <span className={`inline-flex px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 animate-fade-in`}>
+                                    {isRtl ? 'عروض حصرية' : 'Exclusive Collection'}
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl md:text-5xl font-black leading-tight">
+                                <h2 className="text-4xl sm:text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter drop-shadow-lg">
                                     {isRtl ? slide.title_ar : slide.title_en}
                                 </h2>
-                                <p className="text-base md:text-xl font-medium text-white/90 line-clamp-2 md:line-clamp-none">
+                                <p className="text-lg md:text-2xl font-medium text-white/90 line-clamp-2 md:line-clamp-none leading-relaxed max-w-lg">
                                     {isRtl ? slide.subtitle_ar : slide.subtitle_en}
                                 </p>
-                                <button className={`mt-2 md:mt-4 px-6 md:px-8 py-2.5 md:py-3 rounded-xl font-bold bg-white text-black hover:bg-zinc-100 transition-colors text-sm md:text-base`}>
-                                    {isRtl ? 'تسوق الآن' : 'Shop Now'}
+                                <button className={`mt-4 group relative px-8 py-4 rounded-full font-bold bg-white text-shams-blue hover:scale-105 active:scale-95 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.2)] overflow-hidden`}>
+                                    <span className="relative z-10 text-sm md:text-base tracking-wide">
+                                        {isRtl ? 'تسوق المجموعة' : 'Shop Collection'}
+                                    </span>
+                                    <div className="absolute inset-0 bg-zinc-100 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </button>
                             </div>
                         </div>

@@ -85,12 +85,15 @@ function getMockProducts(options: any): Product[] {
     const mockDb: Product[] = [
         {
             id: '1',
-            name_ar: 'بانادول ادفانس ٥٠٠ ملجم',
             name_en: 'Panadol Advance 500mg',
+            name_ar: 'بانادول ادفانس ٥٠٠ ملجم',
             price: 12.50,
             old_price: 15.00,
-            image_url: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&fit=crop',
             category: 'Medicines',
+            // Medicine pills/tablets on white background
+            image_url: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=800&auto=format&fit=crop',
+            description_en: 'Effective relief from mild to moderate pain.',
+            description_ar: 'تخفيف فعال للألم الخفيف إلى المتوسط.',
             brand_en: 'Panadol',
             stock_quantity: 50,
             is_new: true,
@@ -98,35 +101,61 @@ function getMockProducts(options: any): Product[] {
         },
         {
             id: '2',
-            name_ar: 'فيتامين سي سيروم',
-            name_en: 'Vitamin C Serum',
+            name_en: 'CeraVe Moisturizing Cream',
+            name_ar: 'سيرـافي كريم مرطب',
             price: 85.00,
-            image_url: 'https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?q=80&w=800&fit=crop',
+            old_price: 105.00,
             category: 'Skin Care',
-            brand_en: 'Vichy',
+            // White moisturizing cream jar
+            image_url: 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=800&auto=format&fit=crop',
+            description_en: 'Rich, non-greasy, fast-absorbing moisturizing cream.',
+            description_ar: 'كريم مرطب غني، غير دهني، وسريع الامتصاص.',
+            brand_en: 'CeraVe',
             stock_quantity: 12,
-            is_new: true
-        },
-        {
-            id: '3',
-            name_ar: 'شامبو اطفال ٥٠٠ مل',
-            name_en: 'Baby Shampoo 500ml',
-            price: 45.00,
-            image_url: 'https://images.unsplash.com/photo-1515488764276-beab7607c1e6?q=80&w=800&fit=crop',
-            category: 'Baby Care',
-            brand_en: 'Johnson\'s',
-            stock_quantity: 25,
+            is_new: true,
             is_featured: true
         },
         {
-            id: '4',
-            name_ar: 'فوليك اسيد ٥ ملجم',
-            name_en: 'Folic Acid 5mg',
-            price: 18.00,
-            image_url: 'https://images.unsplash.com/photo-1471864190281-ad5fe9bb0720?q=80&w=800&fit=crop',
+            id: '3',
+            name_en: 'Centrum with Lutein',
+            name_ar: 'سنتروم مع لوتين',
+            price: 55.00,
+            old_price: 68.00,
             category: 'Vitamins',
-            brand_en: 'Solgar',
+            // Vitamin supplement capsules
+            image_url: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=800&auto=format&fit=crop',
+            description_en: 'Complete multivitamin with Lutein.',
+            description_ar: 'فيتامينات متعددة كاملة مع اللوتين.',
+            brand_en: 'Centrum',
             stock_quantity: 100,
+            is_new: true
+        },
+        {
+            id: '4',
+            name_en: 'Pampers Premium Care Size 3',
+            name_ar: 'بامبرز عناية مميزة مقاس ٣',
+            price: 92.00,
+            old_price: 110.00,
+            category: 'Baby Care',
+            // Baby care products / cute baby
+            image_url: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=800&auto=format&fit=crop',
+            description_en: 'Softest comfort and best skin protection.',
+            description_ar: 'أنعم راحة وأفضل حماية للبشرة.',
+            brand_en: 'Pampers',
+            stock_quantity: 25,
+            is_new: true
+        },
+        {
+            id: '5',
+            name_en: 'La Roche-Posay Anthelios 50+',
+            name_ar: 'لاروش بوزيه أنثيليوس ٥٠+',
+            price: 120.00,
+            old_price: 145.00,
+            category: 'Skin Care',
+            // Sunscreen / skincare product
+            image_url: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=800&auto=format&fit=crop',
+            brand_en: 'La Roche-Posay',
+            stock_quantity: 30,
             is_new: true
         }
     ];

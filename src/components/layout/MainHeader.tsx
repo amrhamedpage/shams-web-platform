@@ -27,13 +27,13 @@ export function MainHeader() {
     };
 
     return (
-        <div className="w-full bg-white/80 backdrop-blur-xl border-b border-zinc-100/50 py-3 md:py-4 sticky top-0 z-[60] dark:bg-black/80 dark:border-zinc-800/50">
+        <div className="w-full bg-white border-b border-zinc-200 shadow-sm sticky top-0 z-[60] dark:bg-zinc-950 dark:border-zinc-800 transition-all duration-300">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between gap-2 md:gap-6 lg:gap-12">
+                <div className="flex items-center justify-between gap-2 md:gap-6 lg:gap-12 py-3 md:py-4">
 
                     {/* Logo - Refined Shams Branding */}
                     <Link href={`/?lang=${locale}`} className="flex-shrink-0 flex items-center gap-2 md:gap-3 group transition-transform duration-300 hover:scale-105">
-                        <div className="relative h-9 w-9 md:h-12 md:w-12 overflow-hidden rounded-xl bg-white shadow-lg shadow-shams-blue/10 ring-1 ring-zinc-100 group-hover:ring-shams-blue/20 transition-all">
+                        <div className="relative h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-100 group-hover:ring-shams-blue/20 transition-all">
                             <Image
                                 src="/shams-logo-web.svg"
                                 alt="Shams Pharmacy"
@@ -42,7 +42,7 @@ export function MainHeader() {
                             />
                         </div>
                         <h1 className="flex items-center gap-1.5 whitespace-nowrap">
-                            <span className="text-lg md:text-2xl font-black tracking-tighter text-shams-blue">
+                            <span className="text-xl md:text-2xl font-black tracking-tighter text-shams-blue">
                                 {isRtl ? 'صيدليات شمس' : 'Shams Pharmacy'}
                             </span>
                         </h1>
@@ -56,13 +56,13 @@ export function MainHeader() {
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 placeholder={isRtl ? "ابحث عن دواء، ماركة، أو منتج..." : "Search for medicine, brand, or product..."}
-                                className="w-full h-14 rounded-2xl border border-zinc-200 bg-zinc-50/50 px-6 pr-14 text-base outline-none transition-all duration-300 focus:border-shams-blue/30 focus:bg-white focus:ring-8 focus:ring-shams-blue/5 dark:bg-zinc-900/50 dark:border-zinc-800 dark:focus:ring-white/5 rtl:pr-6 rtl:pl-14"
+                                className="w-full h-12 md:h-14 rounded-full border border-zinc-200 bg-zinc-50 px-6 pr-14 text-base outline-none transition-all duration-300 focus:border-shams-blue focus:ring-4 focus:ring-shams-blue/10 dark:bg-zinc-900 dark:border-zinc-800 dark:focus:ring-shams-blue/20 rtl:pr-6 rtl:pl-14 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400"
                             />
                             <button
                                 type="submit"
-                                className="absolute top-2 bottom-2 right-2 aspect-square rounded-xl bg-shams-blue text-white flex items-center justify-center shadow-lg shadow-shams-blue/20 hover:bg-shams-blue/90 hover:scale-105 active:scale-95 transition-all rtl:right-auto rtl:left-2"
+                                className="absolute top-1.5 bottom-1.5 right-1.5 aspect-square rounded-full bg-shams-blue text-white flex items-center justify-center hover:bg-shams-blue/90 hover:scale-105 active:scale-95 transition-all rtl:right-auto rtl:left-1.5"
                             >
-                                <Search size={22} />
+                                <Search size={20} />
                             </button>
                         </div>
                     </form>
@@ -73,11 +73,11 @@ export function MainHeader() {
                             { icon: User, label: isRtl ? 'حسابي' : 'Account', href: '#' },
                             { icon: Heart, label: isRtl ? 'المفضلة' : 'Wishlist', href: '#' },
                         ].map((item, idx) => (
-                            <Link key={idx} href={item.href} className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all group">
+                            <Link key={idx} href={item.href} className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-[#263C98] hover:bg-white/20 hover:text-[#263C98] transition-all group">
                                 <div className="transition-transform duration-300 group-hover:scale-110">
                                     <item.icon size={24} strokeWidth={2} />
                                 </div>
-                                <span className="text-[10px] font-bold uppercase tracking-wider hidden lg:block">
+                                <span className="text-[10px] font-bold uppercase tracking-wider hidden lg:block text-[#263C98]">
                                     {item.label}
                                 </span>
                             </Link>
@@ -85,15 +85,15 @@ export function MainHeader() {
 
                         <button
                             onClick={() => setIsCartOpen(true)}
-                            className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-zinc-600 hover:bg-zinc-100/80 hover:text-shams-blue transition-all group relative"
+                            className="flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-2xl text-[#263C98] hover:bg-white/20 hover:text-[#263C98] transition-all group relative"
                         >
                             <div className="transition-transform duration-300 group-hover:scale-110">
                                 <ShoppingCart size={24} strokeWidth={2} />
-                                <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-shams-blue text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">
+                                <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-[#263C98] text-white text-[10px] font-black flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">
                                     {getItemCount()}
                                 </span>
                             </div>
-                            <span className="text-[10px] font-bold uppercase tracking-wider hidden lg:block">
+                            <span className="text-[10px] font-bold uppercase tracking-wider hidden lg:block text-[#263C98]">
                                 {isRtl ? 'السلة' : 'Cart'}
                             </span>
                         </button>

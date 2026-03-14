@@ -9,6 +9,7 @@ import { CategoryNav } from "@/components/layout/CategoryNav";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/Footer";
 import { Suspense } from "react";
+import { DirectionProvider } from "@/components/layout/DirectionProvider"; // New Import
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,28 +55,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" className={ibmPlexArabic.variable} dir="rtl">
+    <html lang="ar" className={ibmPlexArabic.variable}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexArabic.variable} font-sans antialiased selection:bg-shams-blue/10 selection:text-shams-blue overflow-x-hidden`}
       >
         <Suspense fallback={null}>
-          <div className="flex flex-col sticky top-0 z-50 transition-all duration-500">
-            <TopBar />
-            <MainHeader />
-            <CategoryNav />
-          </div>
-        </Suspense>
-        <main className="min-h-screen px-4 sm:px-6 lg:px-8">
-          {children}
-        </main>
+          <DirectionProvider>
+            <div className="flex flex-col sticky top-0 z-50 transition-all duration-500">
+              <TopBar />
+              <MainHeader />
+              <CategoryNav />
+            </div>
+            <main className="min-h-screen px-4 sm:px-6 lg:px-8">
+              {children}
+            </main>
 
-        <Suspense fallback={null}>
-          <BottomNav />
-          <div className="md:hidden h-24" />
-        </Suspense>
+            <BottomNav />
+            <div className="md:hidden h-24" />
 
-        <Suspense fallback={null}>
-          <Footer />
+            <Footer />
+          </DirectionProvider>
         </Suspense>
       </body>
     </html>

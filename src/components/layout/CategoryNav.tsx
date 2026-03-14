@@ -96,7 +96,7 @@ export function CategoryNav() {
                                 onClick={handleButtonClick}
                                 className={cn(
                                     "flex items-center gap-4 px-6 py-5 font-black text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 min-w-[200px] justify-between",
-                                    "bg-shams-blue text-white shadow-xl shadow-shams-blue/10 hover:bg-shams-blue/95 border border-shams-blue/20"
+                                    "bg-[#263C98] text-white shadow-xl shadow-[#263C98]/10 hover:bg-[#263C98]/95 border border-[#263C98]/20"
                                 )}>
                                 <ChevronDown size={18} className={cn("transition-transform duration-500", isMenuOpen && "rotate-180")} />
                                 <span className="flex-1 text-center font-bold tracking-wider">
@@ -113,7 +113,7 @@ export function CategoryNav() {
                                 <Link
                                     key={i}
                                     href="#"
-                                    className="group flex items-center gap-2.5 py-5 px-3 text-xs font-black uppercase tracking-tight text-zinc-700 hover:text-shams-blue whitespace-nowrap transition-all duration-300 dark:text-zinc-300 dark:hover:text-white"
+                                    className="group flex items-center gap-2.5 py-5 px-3 text-xs font-black uppercase tracking-tight text-zinc-700 hover:text-[#263C98] whitespace-nowrap transition-all duration-300 dark:text-zinc-300 dark:hover:text-white"
                                 >
                                     <div className="transition-transform duration-300 group-hover:scale-110">
                                         {getIcon(isRtl ? link.name_ar : link.name_en)}
@@ -134,7 +134,7 @@ export function CategoryNav() {
 
                     {/* Secondary Access */}
                     <div className="hidden xl:flex items-center gap-6 ml-4">
-                        <Link href="#" className="text-[11px] font-black uppercase tracking-widest text-shams-blue/60 hover:text-shams-blue transition-colors flex items-center gap-2 group">
+                        <Link href="#" className="text-[11px] font-black uppercase tracking-widest text-[#263C98]/60 hover:text-[#263C98] transition-colors flex items-center gap-2 group">
                             <div className="w-2 h-2 rounded-full bg-shams-yellow animate-pulse" />
                             {isRtl ? 'صيدلية قريبة منك' : 'Pharmacies near you'}
                         </Link>

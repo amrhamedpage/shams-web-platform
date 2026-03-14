@@ -5,7 +5,7 @@ import { useCart } from '@/lib/store/useCart';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
-import { CheckoutModal } from '../CheckoutModal';
+import { useRouter } from 'next/navigation';
 
 interface CartDrawerProps {
     isOpen: boolean;
@@ -17,11 +17,16 @@ export function CartDrawer({ isOpen, onClose, locale }: CartDrawerProps) {
     const { items, updateQuantity, removeItem, getTotal, getItemCount } = useCart();
     const isRtl = locale === 'ar';
     const [isMounted, setIsMounted] = useState(false);
-    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
+    const handleCheckout = () => {
+        onClose();
+        router.push(`/checkout?lang=${locale}`);
+    };
 
     if (!isMounted) return null;
 
@@ -168,7 +173,7 @@ export function CartDrawer({ isOpen, onClose, locale }: CartDrawerProps) {
                         </div>
 
                         <button
-                            onClick={() => setIsCheckoutOpen(true)}
+                            onClick={handleCheckout}
                             className="w-full h-16 bg-shams-blue text-white rounded-2xl font-black text-lg shadow-xl shadow-shams-blue/30 hover:bg-shams-blue/90 flex items-center justify-center gap-3 group transition-all"
                         >
                             <span>{isRtl ? 'إتمام عملية الشراء' : 'Proceed to Checkout'}</span>
@@ -182,13 +187,6 @@ export function CartDrawer({ isOpen, onClose, locale }: CartDrawerProps) {
                 )}
             </div>
 
-            <CheckoutModal
-                isOpen={isCheckoutOpen}
-                onClose={() => setIsCheckoutOpen(false)}
-                productName={isRtl ? "طلبية شمس" : "Shams Order"}
-                price={getTotal()}
-                locale={locale}
-            />
         </>
     );
 }
